@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE starmx PUBLIC "-//STAR Lab//StarMX Configuration DTD 1.0//EN" "starmx-1.0.dtd" >
+<starmx>
+    <!-- JMX (Remotely Manage) -->
+    <mbeanserver id="jboss-eap-6-ms" lookup-type="jmx" >
+        <!-- https://www.ibm.com/support/knowledgecenter/pt-br/SSHLNR_8.1.4/com.ibm.pm.doc/install/jboss_config_agent_properties.htm -->
+        <!-- JBoss EAP 5.2/JBoss AS 6.1 -->
+<!--        <jmx-param service-url="service:jmx:rmi://localhost/jndi/rmi://localhost:1090/jmxconnector" />-->
+        <!-- JBoss EAP 6/JBoss AS 7 -->
+        <jmx-param service-url="service:jmx:remoting-jmx://localhost:9999"/>
+    </mbeanserver>
+
+    <mbean id="hellombean" object-name="rogeriogentil.managed.webapp.mbean:type=Hello" mbeanserver="jboss-eap-6-ms" interface="rogeriogentil.managed.webapp.mbean.HelloMBean" />
+    <mbean id="genericmbean" object-name="managedWebappMB:type=Generic" mbeanserver="jboss-eap-6-ms" interface="rogeriogentil.managed.webapp.mbean.GenericMBean" />
+
+    <!-- Using Policy File -->
+<!--    <execute>-->
+<!--        <timer-info interval="30" unit="second" />-->
+
+<!--        <process id="hello_world_policy" policy-type="spl" policy-file="hello.spl">-->
+<!--            <object name="hellodMB" ref="hellombean" />-->
+<!--        </process>-->
+<!--    </execute>-->
+
+    <execute>
+        <timer-info interval="30" unit="second" />
+
+        <process id="hello_process" javaclass="rogeriogentil.manager.process.HelloProcess">
+            <object name="helloMBean" ref="hellombean" />
+        </process>
+    </execute>
+
+    <execute>
+        <timer-info interval="30" unit="second" />
+
+        <process id="monitor_process" javaclass="rogeriogentil.manager.process.MonitorProcess">
+            <object name="genericMBean" ref="genericmbean" />
+        </process>
+    </execute>
+
+    <execute>
+        <notification-info emitter-mbean-ref="genericmbean" event-type="monitor.event" />
+        <process id="exec_process" javaclass="rogeriogentil.manager.process.ExecutorProcess">
+            <object name="genericMBean" ref="genericmbean"/>
+        </process>
+    </execute>
+</starmx>
