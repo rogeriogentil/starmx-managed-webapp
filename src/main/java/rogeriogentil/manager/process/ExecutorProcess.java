@@ -13,7 +13,7 @@ public class ExecutorProcess implements Process {
 
     @Override
     public void init(ProcessConfig processConfig) {
-        System.out.println("Processo " + processConfig.getProcessInfo().getId()  + " foi inicializado.");
+        System.out.println("Process " + processConfig.getProcessInfo().getId()  + " was initialized.");
     }
 
     @Override
@@ -23,6 +23,5 @@ public class ExecutorProcess implements Process {
 
     @Override
     public void destroy() {
-
     }
 }

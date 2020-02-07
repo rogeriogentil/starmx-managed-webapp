@@ -35,6 +35,5 @@ public class ContextListener implements ServletContextListener {
                 logger.error(e);
             }
         }
-
     }
 }

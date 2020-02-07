@@ -20,7 +20,7 @@ public class HelloProcess implements Process {
 //            e.printStackTrace();
 //        }
 
-        System.out.println("Processo " + processConfig.getProcessInfo().getId()  + " inicializado.");
+        System.out.println("Process " + processConfig.getProcessInfo().getId() + " was initialized.");
     }
 
     @Override
@@ -30,11 +30,9 @@ public class HelloProcess implements Process {
         } else {
             helloMBean.restart();
         }
-
     }
 
     @Override
     public void destroy() {
-
     }
 }
