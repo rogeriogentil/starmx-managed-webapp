@@ -1,6 +1,7 @@
 package rogeriogentil.managed.webapp.mbean;
 
 import org.apache.log4j.Logger;
+import rogeriogentil.managed.webapp.log.LogUtil;
 
 import javax.management.Notification;
 import javax.management.NotificationBroadcasterSupport;
@@ -22,6 +23,11 @@ public class Generic extends NotificationBroadcasterSupport implements GenericMB
 
     @Override
     public void executor() {
-        logger.info("Executing 'executor()' method after receive notification.");
+        final String message = "Executing 'executor()' method after receive notification.";
+        final String separator = LogUtil.separatorLogLineProduces(message);
+
+        logger.info(separator);
+        logger.info(message);
+        logger.info(separator);
     }
 }

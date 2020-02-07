@@ -1,12 +1,13 @@
 package rogeriogentil.managed.webapp.mbean;
 
 import org.apache.log4j.Logger;
+import rogeriogentil.managed.webapp.log.LogUtil;
 
 public class Hello implements HelloMBean {
 
     private Logger logger = Logger.getLogger(Hello.class);
+
     private boolean talked = false;
-    private StringBuilder logLine;
 
     @Override
     public String isTalk() {
@@ -18,29 +19,21 @@ public class Hello implements HelloMBean {
         this.talked = true;
 
         final String message = "Hello! The Autonomous Manager invoke this...";
-        logLineProduces(message);
 
-        logger.info(logLine.toString());
+        logger.info(LogUtil.separatorLogLineProduces(message));
         logger.info(message);
-        logger.info(logLine.toString());
+        logger.info(LogUtil.separatorLogLineProduces(message));
     }
 
     @Override
     public void restart() {
         final String message = "Restarting 'talked' attribute... OBS: The Autonomous Manager invoke this too!";
-        logLineProduces(message);
+        final String separator = LogUtil.separatorLogLineProduces(message);
 
-        logger.info(logLine.toString());
+        logger.info(separator);
         logger.info(message);
-        logger.info(logLine.toString());
+        logger.info(separator);
 
         this.talked = false;
-    }
-
-    private void logLineProduces(final String message) {
-        logLine = new StringBuilder(message.length());
-        for (int i = 0; i < message.length(); i++) {
-            logLine.append("-");
-        }
     }
 }
