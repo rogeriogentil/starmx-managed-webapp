@@ -7,10 +7,12 @@ import rogeriogentil.managed.webapp.mbean.MBeansUtils;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
-public class HelloContextListener implements ServletContextListener {
+@WebListener("contextListener")
+public class ContextListener implements ServletContextListener {
 
-    private Logger logger = Logger.getLogger(HelloContextListener.class);
+    private Logger logger = Logger.getLogger(ContextListener.class);
     private StarMXFramework starMX;
 
     @Override

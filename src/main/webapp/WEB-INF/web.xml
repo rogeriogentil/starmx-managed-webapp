@@ -3,9 +3,5 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Managed Web Application</display-name>
-  
-  <listener>
-    <listener-class>rogeriogentil.managed.webapp.listener.HelloContextListener</listener-class>
-  </listener>
+  <display-name>StarMX Managed Web Application</display-name>
 </web-app>
