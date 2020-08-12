@@ -1,6 +1,6 @@
 # starmx-managed-webapp
 
-A web application managed by StarMX framework
+A simple web application Java EE 6-based managed by StarMX framework.
 
 ## Framework
 
